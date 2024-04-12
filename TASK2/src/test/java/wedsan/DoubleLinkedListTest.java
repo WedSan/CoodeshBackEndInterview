@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wedsan.Exception.MiddleElementNotFoundException;
 
+/**
+ * Class to test all methods from DoubleLinkedList class
+ */
 public class DoubleLinkedListTest {
 
     private DoubleLinkedList doubleLinkedList;
