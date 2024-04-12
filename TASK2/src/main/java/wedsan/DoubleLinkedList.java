@@ -74,16 +74,21 @@ public class DoubleLinkedList {
 
         if(index == 0){
             firstElement = null;
+            size--;
             return;
         }
         if(index == size -1){
             lastElement = null;
+            size--;
+            return;
         }
 
         Node element = findElement(index);
 
         element.getPrev().setNext(element.getNext());
         element.getNext().setPrev(element.getPrev());
+
+        size--;
 
     }
 
