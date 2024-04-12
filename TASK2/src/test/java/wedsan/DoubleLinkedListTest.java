@@ -39,7 +39,46 @@ public class DoubleLinkedListTest {
         Assertions.assertEquals(2, doubleLinkedList.getSize());
     }
 
+    @Test
+    public void testFindElement() {
+        Node node1 = new Node("batman");
+        Node node2 = new Node("joker");
+        Node node3 = new Node("penguin");
+        doubleLinkedList.addElement(node1);
+        doubleLinkedList.addElement(node2);
+        doubleLinkedList.addElement(node3);
+
+        Node foundNode = doubleLinkedList.findElement(2);
+        Assertions.assertEquals("penguin", foundNode.getDataValue());
+
+        foundNode = doubleLinkedList.findElement(1);
+        Assertions.assertEquals("joker", foundNode.getDataValue());
 
 
-    // Add more tests for other methods as needed
+        foundNode = doubleLinkedList.findElement(0);
+        Assertions.assertEquals("batman", foundNode.getDataValue());
+    }
+
+    @Test
+    public void testRemoveElement() {
+        Node node1 = new Node("batman");
+        Node node2 = new Node("joker");
+        Node node3 = new Node("penguin");
+        doubleLinkedList.addElement(node1);
+        doubleLinkedList.addElement(node2);
+        doubleLinkedList.addElement(node3);
+
+        doubleLinkedList.removeElement(2);
+        Assertions.assertNull(doubleLinkedList.getLastElement());
+        Assertions.assertEquals(2, doubleLinkedList.getSize());
+
+        doubleLinkedList.removeElement(0);
+        Assertions.assertNull(doubleLinkedList.getFirstElement());
+        Assertions.assertEquals(1, doubleLinkedList.getSize());
+
+        doubleLinkedList.removeElement(0);
+        Assertions.assertNull(doubleLinkedList.getFirstElement());
+        Assertions.assertNull(doubleLinkedList.getLastElement());
+        Assertions.assertEquals(0, doubleLinkedList.getSize());
+    }
 }
