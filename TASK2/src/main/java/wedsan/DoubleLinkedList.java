@@ -103,7 +103,7 @@ public class DoubleLinkedList {
         }
         Node currentElement = firstElement;
 
-        for(int i = 0; i <= index; i++){
+        for(int i = 0; i < index; i++){
             currentElement = currentElement.getNext();
         }
 
