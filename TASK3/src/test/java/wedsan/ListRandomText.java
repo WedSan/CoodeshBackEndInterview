@@ -7,8 +7,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * This class contains JUnit tests for the `ListRandom` class.
+ * It verifies that the `createRandomStringList` method functions as expected.
+ */
 public class ListRandomText {
 
+    /**
+     * Tests if the `createRandomStringList` method generates a list with a size
+     * between 200 and 500 elements.
+     */
     @Test
     public void testCreateRandomStringList_ListSize() {
         ListRandom listRandom = new ListRandom();
@@ -19,6 +27,10 @@ public class ListRandomText {
                 "List size should be between 200 and 500 elements");
     }
 
+    /**
+     * Tests if the `createRandomStringList` method generates a list where each element
+     * has a length of 2 characters and only contains lowercase letters (a-z).
+     */
     @Test
     public void testCreateRandomStringList_ListContent() {
         ListRandom listRandom = new ListRandom();
