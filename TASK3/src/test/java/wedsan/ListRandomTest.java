@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * This class contains JUnit tests for the `ListRandom` class.
  * It verifies that the `createRandomStringList` method functions as expected.
  */
-public class ListRandomText {
+public class ListRandomTest {
 
     /**
      * Tests if the `createRandomStringList` method generates a list with a size
