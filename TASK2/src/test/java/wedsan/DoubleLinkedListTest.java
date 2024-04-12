@@ -40,6 +40,18 @@ public class DoubleLinkedListTest {
     }
 
     @Test
+    public void testThrowException(){
+        DoubleLinkedList evenList = new DoubleLinkedList();
+
+        Node node1 = new Node("batman");
+        Node node2 = new Node("joker");
+
+        evenList.addElement(node1);
+        evenList.addElement(node2);
+        Assertions.assertThrows(MiddleElementNotFoundException.class, ()-> evenList.removeMiddleElement());
+    }
+
+    @Test
     public void testFindElement() {
         Node node1 = new Node("batman");
         Node node2 = new Node("joker");
