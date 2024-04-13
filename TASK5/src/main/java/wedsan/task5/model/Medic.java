@@ -1,7 +1,7 @@
 package wedsan.task5.model;
 
 import jakarta.persistence.*;
-import wedsan.task5.dto.request.MedicDTOReq;
+import wedsan.task5.dto.request.medic.MedicDTOReq;
 
 @Entity
 @Table(name = "TB_MEDIC")
@@ -22,6 +22,9 @@ public class Medic {
 
     @Embedded
     private Address address;
+
+    public Medic() {
+    }
 
     public Medic(MedicDTOReq medic){
         this.name = medic.name();
