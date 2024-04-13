@@ -3,6 +3,7 @@ package wedsan.task5.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import wedsan.task5.dto.request.patient.PatientDTOReq;
 
 @Entity
 @Table(name = "TB_PATIENT")
@@ -22,6 +23,14 @@ public class Patient {
     private String document;
 
     public Patient(){}
+
+    public Patient(PatientDTOReq patient){
+        this.name = patient.name();
+        this.email = patient.email();
+        this.phone = patient.phone();
+        this.address = new Address(patient.address());
+        this.document = patient.document();
+    }
 
     public Patient(Long id, String name, String email, String phone, String document) {
         this.id = id;
