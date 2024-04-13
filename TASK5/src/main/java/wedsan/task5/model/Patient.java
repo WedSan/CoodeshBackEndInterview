@@ -1,8 +1,6 @@
 package wedsan.task5.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import wedsan.task5.dto.request.patient.PatientDTOReq;
 
 @Entity
@@ -10,6 +8,7 @@ import wedsan.task5.dto.request.patient.PatientDTOReq;
 public class Patient {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
