@@ -16,7 +16,7 @@ public class Patient {
     private String email;
 
     private String phone;
-
+    @Embedded
     private Address address;
 
     private String document;
@@ -28,7 +28,7 @@ public class Patient {
         this.email = patient.email();
         this.phone = patient.phone();
         this.address = new Address(patient.address());
-        this.document = patient.document();
+        this.setDocument(patient.document());
     }
 
     public Patient(Long id, String name, String email, String phone, String document) {
@@ -36,7 +36,7 @@ public class Patient {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.document = document;
+        this.setDocument(document);
     }
 
     public Long getId() {
@@ -84,6 +84,6 @@ public class Patient {
     }
 
     public void setDocument(String document) {
-        this.document = document;
+        this.document = document.replaceAll("[^0-9]", "");;
     }
 }
