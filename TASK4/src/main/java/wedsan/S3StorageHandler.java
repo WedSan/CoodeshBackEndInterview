@@ -30,10 +30,13 @@ public class S3StorageHandler {
      */
     public Bucket createBucket(String bucketName) throws AmazonS3Exception, IllegalBucketNameException {
         if(!isValidBucketName(bucketName)){
+            return s3Client.createBucket(bucketName);
+
+        }
+        else{
             throw new IllegalBucketNameException("Invalid bucket name: "+ bucketName);
         }
 
-        return s3Client.createBucket(bucketName);
     }
 
     /**
