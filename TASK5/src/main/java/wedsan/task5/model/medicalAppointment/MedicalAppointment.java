@@ -22,6 +22,7 @@ public class MedicalAppointment {
     @JoinColumn(name = "paciente_id")
     private Patient patient;
 
+    @Column(name = "date_medical_appointment")
     private LocalDateTime date;
 
     public MedicalAppointment() {
