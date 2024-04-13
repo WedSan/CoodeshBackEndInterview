@@ -5,78 +5,20 @@ import wedsan.task5.dto.request.patient.PatientDTOReq;
 
 @Entity
 @Table(name = "TB_PATIENT")
-public class Patient {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-
-    private String email;
-
-    private String phone;
-    @Embedded
-    private Address address;
+public class Patient extends UserEntity {
 
     private String document;
 
     public Patient(){}
 
     public Patient(PatientDTOReq patient){
-        this.name = patient.name();
-        this.email = patient.email();
-        this.phone = patient.phone();
-        this.address = new Address(patient.address());
+        super(null, patient.name(), patient.email(), patient.phone(), new Address(patient.address()));
         this.setDocument(patient.document());
     }
 
-    public Patient(Long id, String name, String email, String phone, String document) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
+    public Patient(Long id, String name, String email, String phone, Address address, String document) {
+        super(id, name, email, phone, address);
         this.setDocument(document);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public String getDocument() {
