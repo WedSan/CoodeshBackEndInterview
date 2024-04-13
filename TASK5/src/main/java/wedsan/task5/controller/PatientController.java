@@ -46,14 +46,14 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluir(@PathVariable Long id) {
+    public ResponseEntity deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
 
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id) {
+    public ResponseEntity findPatientById(@PathVariable Long id) {
         Patient paciente = patientService.findPatientById(id);
         return ResponseEntity.ok(new PatientDTORes(paciente));
     }
