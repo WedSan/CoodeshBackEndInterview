@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import wedsan.task5.dto.request.patient.PatientDTOReq;
 import wedsan.task5.dto.request.patient.PatientUpdateDTOReq;
-import wedsan.task5.dto.response.PatientDTORes;
 import wedsan.task5.model.Patient;
 import wedsan.task5.repository.PatientRepository;
 
