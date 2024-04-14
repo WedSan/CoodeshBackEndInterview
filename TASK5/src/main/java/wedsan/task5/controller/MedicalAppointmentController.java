@@ -1,6 +1,7 @@
 package wedsan.task5.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class MedicalAppointmentController {
         this.medicalAppointmentService = medicalAppointmentService;
     }
 
+    @PostMapping
     public ResponseEntity scheduleMedicalAppointment(@RequestBody MedicalAppointmentDTOReq medicalAppointment) {
         MedicalAppointment appointmentRegistered = medicalAppointmentService.schedule(medicalAppointment);
         return ResponseEntity.ok().body(new MedicalAppointmentDTORes(appointmentRegistered));
