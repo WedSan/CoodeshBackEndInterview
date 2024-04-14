@@ -1,5 +1,6 @@
 package wedsan.task5.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import wedsan.task5.dto.request.MedicalAppointmentDTOReq;
 import wedsan.task5.exception.ValidationException;
@@ -29,7 +30,7 @@ public class MedicalAppointmentService {
         this.medicalAppointmentRepository = medicalAppointmentRepository;
         this.validatorsList = validatorsList;
     }
-
+    @Transactional
     public MedicalAppointment schedule(MedicalAppointmentDTOReq dataReq) {
         if(!patientRepository.existsPatientById(dataReq.idPatient())){
             throw new ValidationException("Pacient id doesn't exist!");
