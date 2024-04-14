@@ -15,11 +15,11 @@ public class MedicalAppointment {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medic_id")
+    @JoinColumn(name = "id_medic")
     private Medic medic;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "paciente_id")
+    @JoinColumn(name = "id_patient")
     private Patient patient;
 
     @Column(name = "date_medical_appointment")
