@@ -1,5 +1,6 @@
 package wedsan.task5.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import wedsan.task5.dto.request.MedicalAppointmentDTOReq;
@@ -33,10 +34,10 @@ public class MedicalAppointmentService {
     @Transactional
     public MedicalAppointment schedule(MedicalAppointmentDTOReq dataReq) {
         if(!patientRepository.existsPatientById(dataReq.idPatient())){
-            throw new ValidationException("Pacient id doesn't exist!");
+            throw new EntityNotFoundException("Pacient id doesn't exist!");
         }
         if(dataReq.idMedic() != null && !medicRepository.existsMedicById(dataReq.idMedic())){
-            throw new ValidationException("Medic id doesn't exist!");
+            throw new EntityNotFoundException("Medic id doesn't exist!");
         }
 
         validatorsList.forEach(v -> v.validate(dataReq));
