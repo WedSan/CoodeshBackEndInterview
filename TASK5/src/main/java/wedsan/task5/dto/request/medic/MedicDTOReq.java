@@ -1,5 +1,7 @@
 package wedsan.task5.dto.request.medic;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -21,6 +23,7 @@ public record MedicDTOReq(
         @Pattern(regexp = "\\d{4,6}")
         String medicDocument,
         @NotNull
+        @Enumerated(EnumType.STRING)
         MedicalSpecialty specialty,
 
         @NotNull @Valid AddressDTORequest address
