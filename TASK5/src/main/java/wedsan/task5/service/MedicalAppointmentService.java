@@ -48,6 +48,7 @@ public class MedicalAppointmentService {
 
         validatorsList.forEach(v -> v.validate(dataReq));
 
+
         Patient patient = patientRepository.getReferenceById(dataReq.idPatient());
         Medic medic = chooseMedic(dataReq);
         if (medic == null) {
@@ -61,15 +62,20 @@ public class MedicalAppointmentService {
 
     }
     @Transactional
-    public MedicalAppointmentCanceled cancel(MedAppointmentCancellationDTOReq dataReq) {
-        if(!medicalAppointmentCanceledRepository.existsById(dataReq.idMedicalAppointment())){
+    public MedicalAppointmentCanceled cancel(MedAppointmentCancellationDTOReq appointCancellation, Long id) {
+        if(!medicalAppointmentRepository.existsById(id)){
             throw new EntityNotFoundException("Medical Appointment id doesn't exist!");
         }
 
-        var medicalAppointment = this.medicalAppointmentRepository.getReferenceById(dataReq.idMedicalAppointment());
+        var medicalAppointment = this.medicalAppointmentRepository.getReferenceById(id);
         this.medicalAppointmentRepository.delete(medicalAppointment);
 
-        MedicalAppointmentCanceled medAppointmentCanceled = new MedicalAppointmentCanceled(medicalAppointment);
+        System.out.println("Não deu erro aqui 1");
+        MedicalAppointmentCanceled medAppointmentCanceled = new MedicalAppointmentCanceled(medicalAppointment,
+                appointCancellation.cancellationReason());
+
+
+        System.out.println("Não deu erro aqui 2");
         return this.medicalAppointmentCanceledRepository.save(medAppointmentCanceled);
     }
 

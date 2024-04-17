@@ -2,6 +2,7 @@ package wedsan.task5.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import wedsan.task5.dto.request.MedAppointmentCancellationDTOReq;
 import wedsan.task5.dto.request.MedicalAppointmentDTOReq;
@@ -25,9 +26,9 @@ public class MedicalAppointmentController {
         return ResponseEntity.ok().body(new MedicalAppointmentDTORes(appointmentRegistered));
     }
 
-    @DeleteMapping
-    public ResponseEntity cancelMedicalAppointment(@RequestBody MedAppointmentCancellationDTOReq appointmentCancellation) {
-        var medAppointmendCanceled = medicalAppointmentService.cancel(appointmentCancellation);
+    @DeleteMapping("/{id}")
+    public ResponseEntity cancelMedicalAppointment(@RequestBody MedAppointmentCancellationDTOReq appointmentCancellation, @PathVariable long id) {
+        var medAppointmendCanceled = medicalAppointmentService.cancel(appointmentCancellation, id);
         return ResponseEntity.status(HttpStatus.OK).body(medAppointmendCanceled);
     }
 }
