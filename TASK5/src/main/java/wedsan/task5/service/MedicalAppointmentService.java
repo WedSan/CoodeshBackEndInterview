@@ -70,12 +70,9 @@ public class MedicalAppointmentService {
         var medicalAppointment = this.medicalAppointmentRepository.getReferenceById(id);
         this.medicalAppointmentRepository.delete(medicalAppointment);
 
-        System.out.println("Não deu erro aqui 1");
         MedicalAppointmentCanceled medAppointmentCanceled = new MedicalAppointmentCanceled(medicalAppointment,
                 appointCancellation.cancellationReason());
 
-
-        System.out.println("Não deu erro aqui 2");
         return this.medicalAppointmentCanceledRepository.save(medAppointmentCanceled);
     }
 
