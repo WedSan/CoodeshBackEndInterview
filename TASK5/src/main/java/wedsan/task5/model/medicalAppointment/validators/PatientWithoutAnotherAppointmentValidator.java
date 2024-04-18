@@ -14,7 +14,7 @@ public class PatientWithoutAnotherAppointmentValidator implements MedicalAppoint
     public void validate(MedicalAppointmentDTOReq req) {
         LocalDateTime firstTime = req.date().withHour(7);
         LocalDateTime lastTime = req.date().withHour(18);
-        boolean existsAppointmentOnTheDay = repository.existsByPatientAndDateBetween(req.idPatient(), firstTime, lastTime);
+        boolean existsAppointmentOnTheDay = repository.existsByPatientIdAndDateBetween(req.idPatient(), firstTime, lastTime);
         if (existsAppointmentOnTheDay) {
             throw new ValidationException("The patient already has an appointment scheduled that day");
         }
