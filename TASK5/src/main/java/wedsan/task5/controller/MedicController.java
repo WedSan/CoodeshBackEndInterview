@@ -33,9 +33,9 @@ public class MedicController {
         return ResponseEntity.ok(medics);
     }
 
-    @PutMapping
-    public ResponseEntity updateMedic(@RequestBody @Valid MedicUpdateDTOReq data) {
-        Medic medic = medicoService.updateMedic(data) ;
+    @PatchMapping("/{id}")
+    public ResponseEntity updateMedic(@RequestBody @Valid MedicUpdateDTOReq data, @PathVariable Long id) {
+        Medic medic = medicoService.updateMedic(data, id);
         return ResponseEntity.ok(medic);
     }
 

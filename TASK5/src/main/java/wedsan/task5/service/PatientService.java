@@ -40,8 +40,8 @@ public class PatientService {
     }
 
     @Transactional
-    public Patient updatePatient(PatientUpdateDTOReq data) {
-        Patient patient = repository.getReferenceById(data.id());
+    public Patient updatePatient(PatientUpdateDTOReq data, Long id) {
+        Patient patient = repository.getReferenceById(id);
 
         if (data.name() != null) {
             patient.setName(data.name());

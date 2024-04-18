@@ -37,9 +37,9 @@ public class PatientController {
         return ResponseEntity.ok(page);
     }
 
-    @PutMapping
-    public ResponseEntity updatePatient(@RequestBody @Valid PatientUpdateDTOReq data) {
-        Patient udpatedPatient = patientService.updatePatient(data);
+    @PatchMapping("/{id}")
+    public ResponseEntity updatePatient(@RequestBody @Valid PatientUpdateDTOReq data, @PathVariable Long id) {
+        Patient udpatedPatient = patientService.updatePatient(data, id);
 
         return ResponseEntity.ok(new PatientDTORes(udpatedPatient));
     }

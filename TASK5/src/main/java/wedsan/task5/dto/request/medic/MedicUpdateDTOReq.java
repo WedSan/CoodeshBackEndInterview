@@ -5,8 +5,6 @@ import wedsan.task5.dto.request.AddressDTORequest;
 import wedsan.task5.model.Address;
 
 public record MedicUpdateDTOReq(
-    @NotNull
-    Long id,
     String name,
     String phone,
     AddressDTORequest address

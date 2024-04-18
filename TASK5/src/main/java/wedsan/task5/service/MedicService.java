@@ -41,8 +41,8 @@ public class MedicService {
     }
 
     @Transactional
-    public Medic updateMedic(MedicUpdateDTOReq data) {
-        Medic medic = repository.getReferenceById(data.id());
+    public Medic updateMedic(MedicUpdateDTOReq data, Long id) {
+        Medic medic = repository.getReferenceById(id);
 
         if (data.name() != null) {
             medic.setName(data.name());
