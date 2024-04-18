@@ -12,7 +12,7 @@ import wedsan.task5.repository.PatientRepository;
 @Service
 public class PatientService {
 
-    PatientRepository repository;
+    private PatientRepository repository;
 
     public PatientService(PatientRepository repository) {
         this.repository = repository;
