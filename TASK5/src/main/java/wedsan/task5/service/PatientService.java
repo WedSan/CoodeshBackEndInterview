@@ -7,20 +7,29 @@ import org.springframework.stereotype.Service;
 import wedsan.task5.dto.request.patient.PatientDTOReq;
 import wedsan.task5.dto.request.patient.PatientUpdateDTOReq;
 import wedsan.task5.model.Patient;
+import wedsan.task5.model.userEntity.validators.creation.UserEntityCreationValidator;
 import wedsan.task5.repository.PatientRepository;
+
+import java.util.List;
 
 @Service
 public class PatientService {
 
     private PatientRepository repository;
 
-    public PatientService(PatientRepository repository) {
+    private List<UserEntityCreationValidator> creationValidatorList;
+
+    public PatientService(PatientRepository repository, List<UserEntityCreationValidator> creationValidatorList) {
         this.repository = repository;
+        this.creationValidatorList = creationValidatorList;
     }
 
     @Transactional
     public Patient createPatient(PatientDTOReq data) {
         Patient patient = new Patient(data);
+
+        creationValidatorList.forEach(v -> v.validate(patient));
+
         repository.save(patient);
 
         return patient;
