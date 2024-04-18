@@ -7,21 +7,29 @@ import org.springframework.stereotype.Service;
 import wedsan.task5.dto.request.medic.MedicDTOReq;
 import wedsan.task5.dto.request.medic.MedicUpdateDTOReq;
 import wedsan.task5.model.Medic;
-import wedsan.task5.model.Patient;
+import wedsan.task5.model.userEntity.validators.creation.UserEntityCreationValidator;
 import wedsan.task5.repository.MedicRepository;
+
+import java.util.List;
 
 @Service
 public class MedicService {
 
+    private List<UserEntityCreationValidator> creationValidatorList;
+
     private MedicRepository repository;
 
-    public MedicService(MedicRepository medicRepository) {
+    public MedicService(List<UserEntityCreationValidator> creationValidatorList, MedicRepository medicRepository) {
+        this.creationValidatorList = creationValidatorList;
         this.repository = medicRepository;
     }
 
     @Transactional
     public Medic createMedic(MedicDTOReq data) {
         Medic medic = new Medic(data);
+
+        creationValidatorList.forEach(v -> v.validate(medic));
+
         repository.save(medic);
 
         return medic;

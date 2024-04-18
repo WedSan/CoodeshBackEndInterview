@@ -26,4 +26,8 @@ public interface MedicRepository extends JpaRepository<Medic, Long> {
             limit 1
         """)
     Medic chooseRandomMedicOnDate(MedicalSpecialty medicalSpecialty, LocalDateTime date);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByMedicDocument(String medicDocument);
 }
