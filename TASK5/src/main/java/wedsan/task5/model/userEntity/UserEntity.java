@@ -1,6 +1,7 @@
-package wedsan.task5.model;
+package wedsan.task5.model.userEntity;
 
 import jakarta.persistence.*;
+import wedsan.task5.model.Address;
 
 @MappedSuperclass
 public abstract class UserEntity {

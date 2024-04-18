@@ -2,6 +2,7 @@ package wedsan.task5.model;
 
 import jakarta.persistence.*;
 import wedsan.task5.dto.request.patient.PatientDTOReq;
+import wedsan.task5.model.userEntity.UserEntity;
 
 @Entity
 @Table(name = "TB_PATIENT")
