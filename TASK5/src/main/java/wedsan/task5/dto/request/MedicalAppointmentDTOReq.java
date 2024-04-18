@@ -16,6 +16,7 @@ public record MedicalAppointmentDTOReq(
         @Future
         LocalDateTime date,
 
+        @NotNull
         MedicalSpecialty medicalSpecialty
 ) {
 }
