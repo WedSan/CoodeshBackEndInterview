@@ -30,7 +30,17 @@ create table if not exists tb_medical_appointment(
    ,ID_MEDIC INT NOT NULL
    ,ID_PATIENT INT NOT NULL
    ,DATE_MEDICAL_APPOINTMENT DATE NOT NULL
+   ,FOREIGN KEY (id_medic) references tb_medic(id)
+   ,FOREIGN KEY (ID_PATIENT) references tb_patient(id)
 );
-ALTER TABLE tb_medical_appointment
-ADD CONSTRAINT FK_ID_MEDIC   FOREIGN KEY(ID_MEDIC)   REFERENCES tb_medic(ID),
-ADD CONSTRAINT FK_ID_PATIENT FOREIGN KEY(ID_PATIENT) REFERENCES tb_patient(ID);
+
+create table if not exists tb_medical_appointment_canceled(
+     ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+    ,ID_MEDIC INT NOT NULL
+    ,ID_PATIENT INT NOT NULL
+    ,DATE_MEDICAL_APPOINTMENT DATE NOT NULL
+    ,CANCELED_DATE DATE NOT NULL
+    ,CANCELATION_REASON varchar(255)
+    ,FOREIGN KEY (id_medic) references tb_medic(id)
+    ,FOREIGN KEY (ID_PATIENT) references tb_patient(id)
+)
