@@ -38,7 +38,6 @@ public class PatientController {
     }
 
     @PutMapping
-    @Transactional
     public ResponseEntity updatePatient(@RequestBody @Valid PatientUpdateDTOReq data) {
         Patient udpatedPatient = patientService.updatePatient(data);
 
