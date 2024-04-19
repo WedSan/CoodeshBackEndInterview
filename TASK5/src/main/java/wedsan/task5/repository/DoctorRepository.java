@@ -7,6 +7,7 @@ import wedsan.task5.model.Doctor;
 import wedsan.task5.model.MedicalSpecialty;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
@@ -30,4 +31,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByMedicDocument(String medicDocument);
+
+    Optional<Doctor> getDoctorById(Long id);
 }

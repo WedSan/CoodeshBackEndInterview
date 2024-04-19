@@ -11,6 +11,7 @@ import wedsan.task5.model.userEntity.validators.creation.UserEntityCreationValid
 import wedsan.task5.repository.DoctorRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoctorService {
@@ -64,7 +65,12 @@ public class DoctorService {
     }
 
     public Doctor findDoctorById(Long id) {
-        return repository.getReferenceById(id);
+        Optional<Doctor> optionalDoctor = repository.getDoctorById(id);
+        if(optionalDoctor.isPresent()) {
+            return optionalDoctor.get();
+        }else{
+            throw new EntityNotFoundException("Doctor not found, id: " + id);
+        }
     }
 
 }
