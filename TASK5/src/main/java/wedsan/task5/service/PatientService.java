@@ -1,16 +1,19 @@
 package wedsan.task5.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import wedsan.task5.dto.request.patient.PatientDTOReq;
 import wedsan.task5.dto.request.patient.PatientUpdateDTOReq;
+import wedsan.task5.model.Doctor;
 import wedsan.task5.model.Patient;
 import wedsan.task5.model.userEntity.validators.creation.UserEntityCreationValidator;
 import wedsan.task5.repository.PatientRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -63,7 +66,12 @@ public class PatientService {
     }
 
     public Patient findPatientById( Long id) {
-        return repository.getReferenceById(id);
+        Optional<Patient> optionalPatient = repository.findById(id);
+        if(optionalPatient.isPresent()) {
+            return optionalPatient.get();
+        }else{
+            throw new EntityNotFoundException("Patient not found, id: " + id);
+        }
     }
 
 }
