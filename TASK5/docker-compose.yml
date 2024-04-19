@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:latest
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: spring_application
+      MYSQL_DATABASE: some_database
+      MYSQL_USER: spring_user
+      MYSQL_PASSWORD: spring_user_password
+    ports:
+      - "3306:3306"
+    networks:
+      - spring_network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    networks:
+      - spring_network
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+networks:
+  spring_network:
+    driver: bridge
+volumes:
+  mysql_data:
