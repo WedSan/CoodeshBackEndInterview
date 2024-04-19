@@ -3,7 +3,9 @@ package wedsan.task5.model;
 import jakarta.persistence.*;
 import wedsan.task5.dto.request.patient.PatientDTOReq;
 import wedsan.task5.model.userEntity.UserEntity;
-
+/**
+ * Represents a patient entity in the system.
+ */
 @Entity
 @Table(name = "TB_PATIENT")
 public class Patient extends UserEntity {
@@ -27,6 +29,7 @@ public class Patient extends UserEntity {
     }
 
     public void setDocument(String document) {
+        // Remove non-numeric characters from the document
         this.document = document.replaceAll("[^0-9]", "");;
     }
 }

@@ -3,6 +3,10 @@ package wedsan.task5.model.userEntity;
 import jakarta.persistence.*;
 import wedsan.task5.model.Address;
 
+/**
+ * Represents a base entity for user-related entities in the system.
+ * This class is not persisted in the database but serves as a common structure for its subclasses.
+ */
 @MappedSuperclass
 public abstract class UserEntity {
 

@@ -5,6 +5,10 @@ import wedsan.task5.exception.ValidationException;
 import wedsan.task5.model.Doctor;
 import wedsan.task5.model.userEntity.UserEntity;
 import wedsan.task5.repository.DoctorRepository;
+/**
+ * Validator that checks if the document number of a doctor entity already exists in the system.
+ * Throws a ValidationException if the document number is already associated with another doctor.
+ */
 @Component
 public class MedicDocumentExistsValidator implements UserEntityCreationValidator{
 
@@ -14,6 +18,12 @@ public class MedicDocumentExistsValidator implements UserEntityCreationValidator
         this.doctorRepository = doctorRepository;
     }
 
+    /**
+     * Validates the doctor data by checking if the medic document number already exists in the system.
+     * Throws a ValidationException if the document number is already associated with another doctor.
+     * @param entityToBeValidated The user entity to be validated.
+     * @throws ValidationException If the document number is already in use by another doctor.
+     */
     @Override
     public void validate(UserEntity entityToBeValidated) {
         if (entityToBeValidated instanceof Doctor) {

@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import wedsan.task5.dto.request.AddressDTORequest;
 
+/**
+ * Represents a request Data Transfer Object for creating a patient.
+ */
 public record PatientDTOReq(
         @NotBlank
         String name,

@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import wedsan.task5.model.MedicalSpecialty;
 
 import java.time.LocalDateTime;
-
+/**
+ * Represents a request Data Transfer Object for creating a medical appointment.
+ */
 public record MedicalAppointmentDTOReq(
         Long idDoctor,
 

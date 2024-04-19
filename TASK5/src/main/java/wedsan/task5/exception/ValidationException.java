@@ -1,5 +1,8 @@
 package wedsan.task5.exception;
 
+/**
+ * Exception indicating a validation error.
+ */
 public class ValidationException extends RuntimeException{
     public ValidationException() {
     }

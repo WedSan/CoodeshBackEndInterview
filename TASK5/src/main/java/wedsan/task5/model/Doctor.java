@@ -3,7 +3,9 @@ package wedsan.task5.model;
 import jakarta.persistence.*;
 import wedsan.task5.dto.request.medic.DoctorDTOReq;
 import wedsan.task5.model.userEntity.UserEntity;
-
+/**
+ * Represents a doctor entity in the system.
+ */
 @Entity
 @Table(name = "TB_DOCTOR")
 public class Doctor extends UserEntity {

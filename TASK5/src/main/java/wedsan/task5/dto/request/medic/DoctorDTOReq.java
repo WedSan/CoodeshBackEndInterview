@@ -10,6 +10,9 @@ import jakarta.validation.constraints.Pattern;
 import wedsan.task5.dto.request.AddressDTORequest;
 import wedsan.task5.model.MedicalSpecialty;
 
+/**
+ * Represents a request DTO Data Transfer Object for creating a doctor.
+ */
 public record DoctorDTOReq(
         @NotBlank
         String name,

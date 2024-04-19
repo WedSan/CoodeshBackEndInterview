@@ -6,6 +6,9 @@ import wedsan.task5.model.Patient;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a medical appointment in the system.
+ */
 @Entity
 @Table(name = "TB_MEDICAL_APPOINTMENT_CANCELED")
 public class MedicalAppointmentCanceled {

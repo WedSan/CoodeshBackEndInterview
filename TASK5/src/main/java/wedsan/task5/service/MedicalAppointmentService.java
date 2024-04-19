@@ -15,8 +15,11 @@ import wedsan.task5.repository.DoctorRepository;
 import wedsan.task5.repository.MedicalAppointmentCanceledRepository;
 import wedsan.task5.repository.MedicalAppointmentRepository;
 import wedsan.task5.repository.PatientRepository;
-
 import java.util.List;
+
+/**
+ * Service class responsible for managing medical appointments.
+ */
 @Service
 public class MedicalAppointmentService {
 
@@ -37,34 +40,45 @@ public class MedicalAppointmentService {
         this.medicalAppointmentCanceledRepository = medicalAppointmentCanceledRepository;
         this.validatorsList = validatorsList;
     }
+
+    /**
+     * Schedules a new medical appointment based on the provided data.
+     * @param dataReq The data of the medical appointment to be scheduled.
+     * @return The scheduled medical appointment.
+     */
     @Transactional
     public MedicalAppointment schedule(MedicalAppointmentDTOReq dataReq) {
         if(!patientRepository.existsPatientById(dataReq.idPatient())){
-            throw new EntityNotFoundException("Pacient id doesn't exist!");
+            throw new EntityNotFoundException("Patient ID does not exist!");
         }
         if(dataReq.idDoctor() != null && !doctorRepository.existsDoctorById(dataReq.idDoctor())){
-            throw new EntityNotFoundException("Doctor id doesn't exist!");
+            throw new EntityNotFoundException("Doctor ID does not exist!");
         }
 
         validatorsList.forEach(v -> v.validate(dataReq));
 
-
         Patient patient = patientRepository.getReferenceById(dataReq.idPatient());
         Doctor doctor = chooseDoctor(dataReq);
         if (doctor == null) {
-            throw new ValidationException("There is no doctor available on this date!");
+            throw new ValidationException("There is no available doctor on this date!");
         }
 
         MedicalAppointment appointment = new MedicalAppointment(null, doctor, patient, dataReq.date());
         medicalAppointmentRepository.save(appointment);
 
         return appointment;
-
     }
+
+    /**
+     * Cancels a medical appointment with the specified ID.
+     * @param appointCancellation The cancellation request data.
+     * @param id The ID of the medical appointment to be canceled.
+     * @return The canceled medical appointment.
+     */
     @Transactional
     public MedicalAppointmentCanceled cancel(MedAppointmentCancellationDTOReq appointCancellation, Long id) {
         if(!medicalAppointmentRepository.existsById(id)){
-            throw new EntityNotFoundException("Medical Appointment id doesn't exist!");
+            throw new EntityNotFoundException("Medical Appointment ID does not exist!");
         }
 
         var medicalAppointment = this.medicalAppointmentRepository.getReferenceById(id);
@@ -76,6 +90,11 @@ public class MedicalAppointmentService {
         return this.medicalAppointmentCanceledRepository.save(medAppointmentCanceled);
     }
 
+    /**
+     * Chooses a doctor for the medical appointment based on the provided data.
+     * @param data The data of the medical appointment.
+     * @return The chosen doctor.
+     */
     private Doctor chooseDoctor(MedicalAppointmentDTOReq data) {
         if (data.idDoctor() != null) {
             return doctorRepository.getReferenceById(data.idDoctor());

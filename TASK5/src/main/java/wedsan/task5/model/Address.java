@@ -2,7 +2,9 @@ package wedsan.task5.model;
 
 import jakarta.persistence.Embeddable;
 import wedsan.task5.dto.request.AddressDTORequest;
-
+/**
+ * Represents an address in the system.
+ */
 @Embeddable
 public class Address {
     private String streetName;

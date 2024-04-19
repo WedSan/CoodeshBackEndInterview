@@ -6,8 +6,19 @@ import wedsan.task5.exception.ValidationException;
 
 import java.time.DayOfWeek;
 
+/**
+ * Validator that checks if the medical appointment is scheduled within the clinic's operating hours.
+ * Throws a ValidationException if the appointment is scheduled on Sunday or outside the clinic's opening hours.
+ */
 @Component
 public class DayOperationValidator implements MedicalAppointmentValidators {
+
+    /**
+     * Validates the medical appointment request by checking if it is scheduled within the clinic's operating hours.
+     * Throws a ValidationException if the appointment is scheduled on Sunday or outside the clinic's opening hours.
+     * @param appointmentData The medical appointment request to be validated.
+     * @throws ValidationException If the appointment is scheduled outside clinic operating hours.
+     */
     @Override
     public void validate(MedicalAppointmentDTOReq appointmentData) {
         var appointmentDate = appointmentData.date();

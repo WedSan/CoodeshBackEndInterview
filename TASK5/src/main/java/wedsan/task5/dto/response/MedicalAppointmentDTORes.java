@@ -4,6 +4,9 @@ import wedsan.task5.model.medicalAppointment.MedicalAppointment;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a response Data Transfer Object for a medical appointment entity.
+ */
 public record MedicalAppointmentDTORes(
         Long id,
         Long idDoctor,

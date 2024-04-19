@@ -3,6 +3,9 @@ package wedsan.task5.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
+/**
+ * Represents a request Data Transfer Object for an address.
+ */
 public record AddressDTORequest(
         @NotBlank
         String street,

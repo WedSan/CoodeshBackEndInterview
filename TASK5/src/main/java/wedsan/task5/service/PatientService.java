@@ -15,6 +15,9 @@ import wedsan.task5.repository.PatientRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class responsible for managing patients.
+ */
 @Service
 public class PatientService {
 
@@ -27,6 +30,11 @@ public class PatientService {
         this.creationValidatorList = creationValidatorList;
     }
 
+    /**
+     * Creates a new patient based on the provided data.
+     * @param data The data of the patient to be created.
+     * @return The created patient.
+     */
     @Transactional
     public Patient createPatient(PatientDTOReq data) {
         Patient patient = new Patient(data);
@@ -38,10 +46,21 @@ public class PatientService {
         return patient;
     }
 
+    /**
+     * Retrieves a page of patients.
+     * @param pageable Pagination information.
+     * @return A page of patients.
+     */
     public Page<Patient> listPatients(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
+    /**
+     * Updates an existing patient with the provided data.
+     * @param data The updated data of the patient.
+     * @param id The ID of the patient to be updated.
+     * @return The updated patient.
+     */
     @Transactional
     public Patient updatePatient(PatientUpdateDTOReq data, Long id) {
         Patient patient = findPatientById(id);
@@ -59,18 +78,28 @@ public class PatientService {
         return repository.save(patient);
     }
 
+    /**
+     * Deletes a patient with the specified ID.
+     * @param id The ID of the patient to be deleted.
+     */
     @Transactional
     public void deletePatient(Long id) {
         Patient patient  = findPatientById(id);
         repository.delete(patient);
     }
 
-    public Patient findPatientById( Long id) {
+    /**
+     * Finds a patient by ID.
+     * @param id The ID of the patient to find.
+     * @return The found patient.
+     * @throws EntityNotFoundException if the patient is not found.
+     */
+    public Patient findPatientById(Long id) {
         Optional<Patient> optionalPatient = repository.findById(id);
         if(optionalPatient.isPresent()) {
             return optionalPatient.get();
-        }else{
-            throw new EntityNotFoundException("Patient not found, id: " + id);
+        } else {
+            throw new EntityNotFoundException("Patient not found, ID: " + id);
         }
     }
 
