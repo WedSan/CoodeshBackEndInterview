@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Pattern;
 import wedsan.task5.dto.request.AddressDTORequest;
 import wedsan.task5.model.MedicalSpecialty;
 
-public record MedicDTOReq(
+public record DoctorDTOReq(
         @NotBlank
         String name,
         @NotBlank

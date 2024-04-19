@@ -1,7 +1,7 @@
 package wedsan.task5.model.medicalAppointment;
 
 import jakarta.persistence.*;
-import wedsan.task5.model.Medic;
+import wedsan.task5.model.Doctor;
 import wedsan.task5.model.Patient;
 
 import java.time.LocalDateTime;
@@ -13,8 +13,8 @@ public class MedicalAppointmentCanceled {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_medic")
-    private Medic medic;
+    @JoinColumn(name = "id_doctor")
+    private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_patient")
@@ -34,16 +34,16 @@ public class MedicalAppointmentCanceled {
 
     public MedicalAppointmentCanceled(MedicalAppointment medicalAppointment, String cancellationReason) {
         this.id = medicalAppointment.getId();
-        this.medic = medicalAppointment.getMedic();
+        this.doctor = medicalAppointment.getMedic();
         this.patient = medicalAppointment.getPatient();
         this.date = medicalAppointment.getDate();
         this.canceledDate = LocalDateTime.now();
         this.cancellationReason = cancellationReason;
     }
 
-    public MedicalAppointmentCanceled(Long id, Medic medic, Patient patient, LocalDateTime date, String cancellationReason) {
+    public MedicalAppointmentCanceled(Long id, Doctor doctor, Patient patient, LocalDateTime date, String cancellationReason) {
         this.id = id;
-        this.medic = medic;
+        this.doctor = doctor;
         this.patient = patient;
         this.date = date;
         this.canceledDate = LocalDateTime.now();

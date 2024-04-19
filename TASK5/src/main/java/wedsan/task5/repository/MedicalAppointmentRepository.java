@@ -10,5 +10,5 @@ import java.time.LocalDateTime;
 public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppointment, Long> {
     boolean existsByPatientIdAndDateBetween(Long patientId, LocalDateTime firstHour,
                                              LocalDateTime lastHour);
-    boolean existsMedicalAppointmentByMedicIdAndDate(Long medicId, LocalDateTime date);
+    boolean existsMedicalAppointmentByDoctorIdAndDate(Long medicId, LocalDateTime date);
 }

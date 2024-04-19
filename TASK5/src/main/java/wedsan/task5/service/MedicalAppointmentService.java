@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service;
 import wedsan.task5.dto.request.MedAppointmentCancellationDTOReq;
 import wedsan.task5.dto.request.MedicalAppointmentDTOReq;
 import wedsan.task5.exception.ValidationException;
-import wedsan.task5.model.Medic;
+import wedsan.task5.model.Doctor;
 import wedsan.task5.model.Patient;
 import wedsan.task5.model.medicalAppointment.MedicalAppointment;
 import wedsan.task5.model.medicalAppointment.MedicalAppointmentCanceled;
 import wedsan.task5.model.medicalAppointment.validators.MedicalAppointmentValidators;
-import wedsan.task5.repository.MedicRepository;
+import wedsan.task5.repository.DoctorRepository;
 import wedsan.task5.repository.MedicalAppointmentCanceledRepository;
 import wedsan.task5.repository.MedicalAppointmentRepository;
 import wedsan.task5.repository.PatientRepository;
@@ -22,7 +22,7 @@ public class MedicalAppointmentService {
 
     private PatientRepository patientRepository;
 
-    private MedicRepository medicRepository;
+    private DoctorRepository doctorRepository;
 
     private MedicalAppointmentRepository medicalAppointmentRepository;
 
@@ -30,9 +30,9 @@ public class MedicalAppointmentService {
 
     private List<MedicalAppointmentValidators> validatorsList;
 
-    public MedicalAppointmentService(PatientRepository patientRepository, MedicRepository medicRepository, MedicalAppointmentRepository medicalAppointmentRepository, MedicalAppointmentCanceledRepository medicalAppointmentCanceledRepository, List<MedicalAppointmentValidators> validatorsList) {
+    public MedicalAppointmentService(PatientRepository patientRepository, DoctorRepository doctorRepository, MedicalAppointmentRepository medicalAppointmentRepository, MedicalAppointmentCanceledRepository medicalAppointmentCanceledRepository, List<MedicalAppointmentValidators> validatorsList) {
         this.patientRepository = patientRepository;
-        this.medicRepository = medicRepository;
+        this.doctorRepository = doctorRepository;
         this.medicalAppointmentRepository = medicalAppointmentRepository;
         this.medicalAppointmentCanceledRepository = medicalAppointmentCanceledRepository;
         this.validatorsList = validatorsList;
@@ -42,20 +42,20 @@ public class MedicalAppointmentService {
         if(!patientRepository.existsPatientById(dataReq.idPatient())){
             throw new EntityNotFoundException("Pacient id doesn't exist!");
         }
-        if(dataReq.idMedic() != null && !medicRepository.existsMedicById(dataReq.idMedic())){
-            throw new EntityNotFoundException("Medic id doesn't exist!");
+        if(dataReq.idDoctor() != null && !doctorRepository.existsDoctorById(dataReq.idDoctor())){
+            throw new EntityNotFoundException("Doctor id doesn't exist!");
         }
 
         validatorsList.forEach(v -> v.validate(dataReq));
 
 
         Patient patient = patientRepository.getReferenceById(dataReq.idPatient());
-        Medic medic = chooseMedic(dataReq);
-        if (medic == null) {
+        Doctor doctor = chooseDoctor(dataReq);
+        if (doctor == null) {
             throw new ValidationException("There is no doctor available on this date!");
         }
 
-        MedicalAppointment appointment = new MedicalAppointment(null, medic, patient, dataReq.date());
+        MedicalAppointment appointment = new MedicalAppointment(null, doctor, patient, dataReq.date());
         medicalAppointmentRepository.save(appointment);
 
         return appointment;
@@ -76,15 +76,15 @@ public class MedicalAppointmentService {
         return this.medicalAppointmentCanceledRepository.save(medAppointmentCanceled);
     }
 
-    private Medic chooseMedic(MedicalAppointmentDTOReq data) {
-        if (data.idMedic() != null) {
-            return medicRepository.getReferenceById(data.idMedic());
+    private Doctor chooseDoctor(MedicalAppointmentDTOReq data) {
+        if (data.idDoctor() != null) {
+            return doctorRepository.getReferenceById(data.idDoctor());
         }
 
         if (data.medicalSpecialty() == null) {
-            throw new ValidationException("pecialty is mandatory when no doctor is chosen!");
+            throw new ValidationException("Specialty is mandatory when no doctor is chosen!");
         }
 
-        return medicRepository.chooseRandomMedicOnDate(data.medicalSpecialty(), data.date());
+        return doctorRepository.chooseRandomDoctorOnDate(data.medicalSpecialty(), data.date());
     }
 }

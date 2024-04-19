@@ -7,7 +7,7 @@ import wedsan.task5.model.MedicalSpecialty;
 import java.time.LocalDateTime;
 
 public record MedicalAppointmentDTOReq(
-        Long idMedic,
+        Long idDoctor,
 
         @NotNull
         Long idPatient,

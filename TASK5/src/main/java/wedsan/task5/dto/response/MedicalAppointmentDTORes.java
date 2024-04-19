@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 
 public record MedicalAppointmentDTORes(
         Long id,
-        Long idMedico,
-        Long idPaciente,
-        LocalDateTime data
+        Long idDoctor,
+        Long idPatient,
+        LocalDateTime date
 ) {
     public MedicalAppointmentDTORes(MedicalAppointment medicalAppointment) {
         this(medicalAppointment.getId(),

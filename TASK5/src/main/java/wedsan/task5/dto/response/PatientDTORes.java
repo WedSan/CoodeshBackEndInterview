@@ -8,7 +8,7 @@ public record PatientDTORes(
         String email,
         String document,
         String phone,
-        Address endereco
+        Address address
 ) {
     public PatientDTORes(Patient patient) {
         this(patient.getId(), patient.getName(), patient.getEmail(), patient.getDocument(), patient.getPhone(), patient.getAddress());

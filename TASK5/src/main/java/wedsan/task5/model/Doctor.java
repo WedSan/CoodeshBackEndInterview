@@ -1,22 +1,22 @@
 package wedsan.task5.model;
 
 import jakarta.persistence.*;
-import wedsan.task5.dto.request.medic.MedicDTOReq;
+import wedsan.task5.dto.request.medic.DoctorDTOReq;
 import wedsan.task5.model.userEntity.UserEntity;
 
 @Entity
-@Table(name = "TB_MEDIC")
-public class Medic extends UserEntity {
+@Table(name = "TB_DOCTOR")
+public class Doctor extends UserEntity {
 
     private String medicDocument;
 
     @Enumerated(EnumType.STRING)
     private MedicalSpecialty specialty;
 
-    public Medic() {
+    public Doctor() {
     }
 
-    public Medic(MedicDTOReq medic){
+    public Doctor(DoctorDTOReq medic){
         super(null, medic.name(), medic.email(), medic.phone(), new Address(medic.address()));
         this.medicDocument = medic.medicDocument();
         this.specialty = medic.specialty();

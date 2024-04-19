@@ -1,7 +1,7 @@
 package wedsan.task5.model.medicalAppointment;
 
 import jakarta.persistence.*;
-import wedsan.task5.model.Medic;
+import wedsan.task5.model.Doctor;
 import wedsan.task5.model.Patient;
 
 import java.time.LocalDateTime;
@@ -15,8 +15,8 @@ public class MedicalAppointment {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_medic")
-    private Medic medic;
+    @JoinColumn(name = "id_doctor")
+    private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_patient")
@@ -28,9 +28,9 @@ public class MedicalAppointment {
     public MedicalAppointment() {
     }
 
-    public MedicalAppointment(Long id, Medic medic, Patient patient, LocalDateTime date) {
+    public MedicalAppointment(Long id, Doctor doctor, Patient patient, LocalDateTime date) {
         this.id = id;
-        this.medic = medic;
+        this.doctor = doctor;
         this.patient = patient;
         this.date = date;
     }
@@ -43,12 +43,12 @@ public class MedicalAppointment {
         this.id = id;
     }
 
-    public Medic getMedic() {
-        return medic;
+    public Doctor getMedic() {
+        return doctor;
     }
 
-    public void setMedic(Medic medic) {
-        this.medic = medic;
+    public void setMedic(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public Patient getPatient() {

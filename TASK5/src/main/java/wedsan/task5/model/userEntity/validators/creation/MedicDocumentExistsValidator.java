@@ -2,25 +2,25 @@ package wedsan.task5.model.userEntity.validators.creation;
 
 import org.springframework.stereotype.Component;
 import wedsan.task5.exception.ValidationException;
-import wedsan.task5.model.Medic;
+import wedsan.task5.model.Doctor;
 import wedsan.task5.model.userEntity.UserEntity;
-import wedsan.task5.repository.MedicRepository;
+import wedsan.task5.repository.DoctorRepository;
 @Component
 public class MedicDocumentExistsValidator implements UserEntityCreationValidator{
 
-    private MedicRepository medicRepository;
+    private DoctorRepository doctorRepository;
 
-    public MedicDocumentExistsValidator(MedicRepository medicRepository) {
-        this.medicRepository = medicRepository;
+    public MedicDocumentExistsValidator(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
     }
 
     @Override
     public void validate(UserEntity entityToBeValidated) {
-        if (entityToBeValidated instanceof Medic) {
-            Medic medic = (Medic) entityToBeValidated;
+        if (entityToBeValidated instanceof Doctor) {
+            Doctor doctor = (Doctor) entityToBeValidated;
 
-            if(medicRepository.existsByMedicDocument(medic.getMedicDocument())){
-                throw new ValidationException("Medic document already exists: "+ medic.getMedicDocument());
+            if(doctorRepository.existsByMedicDocument(doctor.getMedicDocument())){
+                throw new ValidationException("Medic document already exists: "+ doctor.getMedicDocument());
             }
         }
     }
