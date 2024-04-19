@@ -1,5 +1,6 @@
 package wedsan.task5.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,7 +44,7 @@ public class DoctorService {
 
     @Transactional
     public Doctor udpateDoctor(DoctorUpdateDTOReq data, Long id) {
-        Doctor doctor = repository.getReferenceById(id);
+        Doctor doctor = findDoctorById(id);
 
         if (data.name() != null) {
             doctor.setName(data.name());
@@ -60,7 +61,7 @@ public class DoctorService {
 
     @Transactional
     public void deleteDoctor(Long id) {
-        Doctor doctor = repository.getReferenceById(id);
+        Doctor doctor = findDoctorById(id);
         repository.delete(doctor);
     }
 
