@@ -44,7 +44,7 @@ public class PatientService {
 
     @Transactional
     public Patient updatePatient(PatientUpdateDTOReq data, Long id) {
-        Patient patient = repository.getReferenceById(id);
+        Patient patient = findPatientById(id);
 
         if (data.name() != null) {
             patient.setName(data.name());
@@ -61,7 +61,7 @@ public class PatientService {
 
     @Transactional
     public void deletePatient(Long id) {
-        Patient patient  = repository.getReferenceById(id);
+        Patient patient  = findPatientById(id);
         repository.delete(patient);
     }
 
