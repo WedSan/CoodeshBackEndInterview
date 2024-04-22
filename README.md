@@ -853,6 +853,8 @@ public class Main {
 > ```javascript
 >  curl -X POST -H "Content-Type: application/json" --data @post.json http://localhost:8080/doctor
 > ```
+</details>
+
 #### Get all doctors from the system
 
 <details>
@@ -871,6 +873,7 @@ public class Main {
 > ```javascript
 >  curl -X GET -H "Content-Type: application/json" http://localhost:8080/doctor
 > ```
+</details>
 
 #### Update doctor data
 
@@ -898,6 +901,7 @@ public class Main {
 
 > ````javascript
 >  curl -X PATCH -H "Content-Type: application/json" --data @patch.json http://localhost:8080/doctor/1
+</details>
 
 #### Delete doctor data
 
@@ -917,6 +921,8 @@ public class Main {
 
 > ````javascript
 >  curl -X DELETE http://localhost:8080/doctor/1
+</details>
+
 #### Find doctor data by id
 
 <details>
@@ -935,6 +941,7 @@ public class Main {
 
 > ````javascript
 >  curl -X GET -H "Content-Type: application/json" http://localhost:8080/doctor/1
+</details>
 
 #### Register a New Patient
 
@@ -974,6 +981,8 @@ public class Main {
 
 > ```javascript
 >  curl -X POST -H "Content-Type: application/json" --data @post.json http://localhost:8080/patients
+</details>
+
 #### Get all patients from the system
 
 <details>
@@ -993,6 +1002,8 @@ public class Main {
 > ```javascript
 >  curl -X GET -H "Content-Type: application/json" http://localhost:8080/patients
 > ```
+</details>
+
 #### Update patient data
 
 <details>
@@ -1019,6 +1030,8 @@ public class Main {
 
 > ````javascript
 >  curl -X PATCH -H "Content-Type: application/json" --data @patch.json http://localhost:8080/patients/1
+</details>
+
 #### Delete patient data
 
 <details>
@@ -1037,6 +1050,8 @@ public class Main {
 
 > ````javascript
 >  curl -X DELETE http://localhost:8080/patients/1
+</details>
+
 #### Find patient data by id
 
 <details>
@@ -1055,6 +1070,8 @@ public class Main {
 
 > ````javascript
 >  curl -X GET -H "Content-Type: application/json" http://localhost:8080/patients/1
+</details>
+
 #### Schedule medical appointment
 
 <details>
@@ -1089,6 +1106,7 @@ public class Main {
 
 > ```javascript
 >  curl -X POST -H "Content-Type: application/json" --data @post.json http://localhost:8080/medical_appointment
+</details>
 
  #### Cancel medical appointment
 
@@ -1108,3 +1126,4 @@ public class Main {
 
 > ````javascript
 >  curl -X DELETE http://localhost:8080/medical_appointment/1
+</details>
