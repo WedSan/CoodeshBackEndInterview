@@ -14,7 +14,7 @@ Solution project for **coodesh back-end challenge.**
   
 Memory and CPU usage:
 ![](https://images2.imgbox.com/3b/e9/kJaXLnz6_o.png)
-Based on the graph, over a 6-hour period, the analyzed machine had an average CPU usage of less than 10%, indicating that the machine is operating with a lot of leeway, except around 1:20 PM, when CPU usage peaks at between 26% and 28%. This suggests a sudden increase in demand for processing power, likely due to a surge in requests. Another observation is that starting at 12:00 PM, CPU and memory usage gradually increase compared to the levels before noon. This trend aligns with typical usage patterns observed in many workplaces, where system activity tends to pick up during regular business hours.
+Based on the graph, over a 6-hour period, the analyzed machine had an average memory usage of less than 10%, indicating that the machine is operating with a lot of leeway, except around 1:20 PM, when memory usage peaks at between 26% and 28%. This suggests a sudden increase in demand for processing power, likely due to a surge in requests. Another observation is that starting at 12:00 PM, CPU and memory usage gradually increase compared to the levels before noon. This trend aligns with typical usage patterns observed in many workplaces, where system activity tends to pick up during regular business hours.
 
 ## SQL TASK
 1. Query that returns the number of employees by gender.
