@@ -18,7 +18,7 @@ Based on the graph, over a 6-hour period, the analyzed machine had an average CP
 
 ## SQL TASK
 1. Query that returns the number of employees by gender.
-````sql-   
+````sql   
 SELECT gender , count(*) as number_of_employees  
 FROM employees  
 GROUP BY gender; 
