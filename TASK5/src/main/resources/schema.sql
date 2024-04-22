@@ -40,7 +40,7 @@ create table if not exists tb_medical_appointment_canceled(
     ,ID_PATIENT INT NOT NULL
     ,DATE_MEDICAL_APPOINTMENT DATE NOT NULL
     ,CANCELED_DATE DATE NOT NULL
-    ,CANCELATION_REASON varchar(255)
+    ,CANCELLATION_REASON varchar(255)
     ,FOREIGN KEY (ID_DOCTOR) references tb_doctor(id)
     ,FOREIGN KEY (ID_PATIENT) references tb_patient(id)
 )
