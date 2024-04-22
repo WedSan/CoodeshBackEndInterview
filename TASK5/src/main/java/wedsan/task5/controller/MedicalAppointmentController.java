@@ -46,6 +46,6 @@ public class MedicalAppointmentController {
     @DeleteMapping("/{id}")
     public ResponseEntity cancelMedicalAppointment(@RequestBody MedAppointmentCancellationDTOReq appointmentCancellation, @PathVariable long id) {
         MedicalAppointmentCanceled medicalAppointmentCanceled = medicalAppointmentService.cancel(appointmentCancellation, id);
-        return ResponseEntity.status(HttpStatus.OK).body(medicalAppointmentCanceled);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(medicalAppointmentCanceled);
     }
 }
